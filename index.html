@@ -137,9 +137,10 @@ function ultraPanic() {
 }
 
 /* move BEFORE click */
-["mouseenter","mouseover","pointerdown","touchstart"].forEach(e => {
+["mouseenter","pointerdown","touchstart"].forEach(e => {
   noBtn.addEventListener(e, ultraPanic);
 });
+
 
 /* YES CLICK */
 yesBtn.onclick = () => {
@@ -189,3 +190,4 @@ yesBtn.onclick = () => {
 
 </body>
 </html>
+
