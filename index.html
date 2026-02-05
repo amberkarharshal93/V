@@ -34,7 +34,7 @@ body::before {
 }
 
 .card {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.92);
   backdrop-filter: blur(14px);
   padding: 45px 35px;
   border-radius: 32px;
@@ -78,6 +78,7 @@ button {
   cursor: pointer;
 }
 
+/* YES */
 #yes {
   background: linear-gradient(135deg,#ff4d6d,#ff758f);
   color: white;
@@ -89,15 +90,16 @@ button {
   transform: scale(1.18);
 }
 
-/* EVIL NO BUTTON — INVISIBLE */
+/* EVIL NO (VISIBLE) */
 #no {
-  background: transparent;
+  background: rgba(200,200,200,0.35);
+  color: #555;
+  border: 2px dashed rgba(150,150,150,0.6);
   position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  left: 150px;
-  top: 30px;
+  left: 140px;
+  top: 40px;
+  transition: transform 0.05s linear;
+  backdrop-filter: blur(6px);
 }
 </style>
 </head>
@@ -114,7 +116,7 @@ button {
 
   <div class="buttons">
     <button id="yes">Yes</button>
-    <button id="no"></button>
+    <button id="no">No</button>
   </div>
 </div>
 
@@ -124,20 +126,18 @@ button {
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 
-/* EXTREMELY EVIL NO BUTTON */
+/* ULTRA EVIL MOVEMENT */
 function ultraPanic() {
-  const x = Math.random() * window.innerWidth - window.innerWidth / 2;
-  const y = Math.random() * window.innerHeight - window.innerHeight / 2;
-  const scale = Math.random() * 0.4 + 0.3;
+  const x = (Math.random() - 0.5) * window.innerWidth * 0.8;
+  const y = (Math.random() - 0.5) * window.innerHeight * 0.5;
   const rotate = Math.random() * 720;
 
-  noBtn.style.transition = "transform 0.04s linear";
   noBtn.style.transform =
-    `translate(${x}px, ${y}px) scale(${scale}) rotate(${rotate}deg)`;
+    `translate(${x}px, ${y}px) rotate(${rotate}deg)`;
 }
 
-/* runs BEFORE touch */
-["mouseenter","mouseover","touchstart","pointerdown"].forEach(e => {
+/* move BEFORE click */
+["mouseenter","mouseover","pointerdown","touchstart"].forEach(e => {
   noBtn.addEventListener(e, ultraPanic);
 });
 
@@ -163,7 +163,7 @@ yesBtn.onclick = () => {
         text-align:center;
         padding:30px;
       ">
-        <div style="max-width:500px; animation: pop 0.8s ease;">
+        <div style="max-width:520px; animation: pop 0.8s ease;">
           <h1 style="font-size:30px;">💖 For You, Shreya 💖</h1>
           <p style="font-size:18px; line-height:1.7;">
             I don’t promise perfect days,<br>
